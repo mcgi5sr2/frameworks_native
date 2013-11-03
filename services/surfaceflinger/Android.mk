@@ -110,7 +110,6 @@ LOCAL_SHARED_LIBRARIES := \
     libgui \
     libpowermanager
 
-
 ifeq ($(TARGET_USES_QCOM_BSP), true)
     LOCAL_WHOLE_STATIC_LIBRARIES += libexsurfaceflinger
     LOCAL_C_INCLUDES += vendor/qcom/opensource/display-frameworks/native/services/surfaceflinger/
@@ -119,6 +118,13 @@ ifeq ($(TARGET_USES_QCOM_BSP), true)
     LOCAL_C_INCLUDES += $(call project-path-for,qcom-display)/libqdutils
     LOCAL_SHARED_LIBRARIES += libqdutils
     LOCAL_CFLAGS += -DQTI_BSP
+endif 
+
+ifeq ($(BOARD_USES_SAMSUNG_HDMI),true)
+        LOCAL_CFLAGS += -DSAMSUNG_HDMI_SUPPORT
+        LOCAL_SHARED_LIBRARIES += libTVOut libhdmiclient
+        LOCAL_C_INCLUDES += hardware/samsung/$(TARGET_BOARD_PLATFORM)/libhdmi/libhdmiservice
+        LOCAL_C_INCLUDES += hardware/samsung/$(TARGET_BOARD_PLATFORM)/include
 endif
 
 LOCAL_MODULE := libsurfaceflinger
