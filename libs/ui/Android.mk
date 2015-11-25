@@ -75,6 +75,10 @@ LOCAL_C_INCLUDES += hardware/samsung/$(TARGET_BOARD_PLATFORM)/hal/libhdmi/libhdm
 LOCAL_C_INCLUDES += hardware/samsung/$(TARGET_BOARD_PLATFORM)/hal/include
 endif
 
+ifeq ($(BOARD_EGL_NEEDS_HANDLE_VALUE),true)
+LOCAL_CFLAGS += -DEGL_NEEDS_HANDLE
+endif
+
 LOCAL_MODULE := libui
 
 include $(BUILD_SHARED_LIBRARY)
